@@ -42,6 +42,8 @@ Why: replay after a successful commit must do nothing. A failed de-list is not a
 
 ## StubHub `external_id` is not a safe no-op
 
+Alternative: send the create again and let StubHub replace the listing.
+
 The StubHub listing guide says a second create with the same `external_id` deletes the old listing and creates a new one. Our key is `ticket_id` plus the platform name, and a second create is refused locally before any HTTP call. This repo does not call them.
 
 ## Fee percentages in the pricing section come from the brief

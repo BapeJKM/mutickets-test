@@ -247,7 +247,7 @@ The window is not zero. After we have marked sold, and before the other site has
 
 What a real programme needs, and what this design will not scale by cheating.
 
-Seller side, from the pages in point 3: a payout method (PayPal or a bank account), and on StubHub UK a sort code with no spaces. The StubHub UK payout article also describes Hyperwallet and KYC for some sellers: https://support.stubhub.co.uk/en/support/solutions/articles/80000619698-changes-to-the-payment-services-agreement-for-sellers-of-european-and-uk-events
+Seller side: PayPal or a bank account. For a UK event, StubHub asks for a 6-digit sort code as consecutive digits, with no spaces or hyphens: https://support.stubhub.co.uk/en/support/solutions/articles/80000618604-how-do-i-get-paid-for-my-stubhub-sale- . Some sellers are then asked to pass Hyperwallet KYC before a payout: https://support.stubhub.co.uk/en/support/solutions/articles/80000619698-changes-to-the-payment-services-agreement-for-sellers-of-european-and-uk-events
 
 That KYC is per person. It does not become faster because you open more email addresses.
 

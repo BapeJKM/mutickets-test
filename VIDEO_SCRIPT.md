@@ -4,7 +4,7 @@ Record with the repo open. The outline is the order, not a script to read word f
 
 ## 0:00 Design in one minute
 
-Say what the folder is: a design for sourcing a UK ticket and reselling it, plus one working piece. The working piece stops a second sale. The buy step is a drawing. No live purchase, no calls to Ticketmaster or a resale site.
+Say what the folder is: a design for sourcing a UK ticket and reselling it. The running code walks that loop with stubbed answers. It does not call Ticketmaster or a resale site, and it does not charge a card. The de-list is the piece that stops a second sale.
 
 Point at `README.md` and say the ten sections follow the brief in order.
 
@@ -26,9 +26,13 @@ Open `reconcile.py` from the top.
 
 Say the gap out loud: the other site can still sell until the de-list is accepted. The next message cancels that order. The window is not zero.
 
-## 3:20 Tests
+## 3:20 Run the loop, then the tests
 
-From the repo root, run `python run_tests.py`.
+From the repo root, run `python demo_loop.py`.
+
+Read the six blocks as they print: source, purchase trace ending in bought, the two list prices, the second list refused, the sale plus de-list, then queue expired and a proxy failure that is not charged again.
+
+Then run `python -m pytest -v`.
 
 Name four cases while it runs: two sales at the same time, the same message twice, a later message with an earlier timestamp after we already sold, and two threads. Mention the seeded random test uses a fixed seed and does not use Hypothesis.
 
@@ -42,4 +46,4 @@ Open README point 9. Say what you cannot see without their database, their accou
 
 ## 4:40 Stop
 
-Say the video is the walkthrough. The code is the de-list. The purchase was not built. Questions are in `QUESTIONS.md`.
+Say the video is the walkthrough. The purchase on screen is a stub. The de-list is the tested core. Questions are in `QUESTIONS.md`.

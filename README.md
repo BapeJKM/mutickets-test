@@ -1,6 +1,6 @@
 # Ticket sourcing and resale, one working slice
 
-This folder is a design for the whole loop, and a working de-list when one platform sells the seat. The buy step is a drawing. Nothing here purchases a ticket or calls a ticket site.
+This folder is a design for the whole loop, plus code that walks the loop with stubbed answers. Nothing here calls a ticket site or charges a card.
 
 Run the tests from a fresh clone:
 
@@ -13,17 +13,28 @@ That installs pytest from `requirements.txt` and runs `pytest`. The core file `r
 Python 3.12 is the syntax target. On 6 Oct 2026 this PC had 3.13.3 and did not have 3.12. The tests ran on 3.13.3.
 
 ```
-reconcile.py          the module
-tests/test_reconcile.py
+demo_loop.py          prints the whole stubbed loop
+discover.py           the saved sample event, no network call
+purchase.py           queue, cart, captcha, pay, proxy, account
+pricing.py            brief fee math
+listing.py            one create per ticket and platform
+reconcile.py          de-list when one platform sells
+tests/
 run_tests.py
 requirements.txt
 pytest.ini
-README.md             this design
-QUESTIONS.md          questions and the defaults already used
+README.md
+QUESTIONS.md
 DECISIONS.md
 AI_USAGE.md
 VIDEO_SCRIPT.md
 practice/             local only, gitignored, seeded bugs for rehearsal
+```
+
+Show the loop:
+
+```bash
+python demo_loop.py
 ```
 
 ## The sample event
@@ -144,11 +155,13 @@ A Mixmag report on 30 Sep 2026 quotes a minister saying the draft bill is being 
 
 `[Unverified]` whether any of that became law between 30 Sep 2026 and 6 Oct 2026. This repo does not treat a price cap as current law. It also does not treat "the bill is not passed" as permission to bot an on-sale. The 2018 regulations and the Ticketmaster clauses above are already in force.
 
-What is risky, in short: scripted checkout, beating the 6-ticket rule, buying as a business to resell without written permission, and scraping the site after the terms said not to. What this repo actually does: none of those. It records one public page and reconciles fake sale messages.
+What is risky, in short: a script that really checks out, beating the 6-ticket rule, buying as a business to resell without written permission, and scraping the site after the terms said not to. What this repo runs: a local stub of those steps, and fake sale messages through the de-list. No ticket site is called.
 
 ## 2. Simulated purchase
 
-There is no checkout code. The states below are the drawing. Each failure stops. Nothing retries against a live site.
+`purchase.py` walks queue, cart, captcha, and pay on this machine. You pass a stub result for each step (`ok`, or a failure name). The function writes a trace and a final status. It does not open a socket, reserve a seat, or charge a card. A second call with the same attempt id, after `unknown`, `bought`, or `failed`, returns `already_finished` and an empty trace.
+
+`python demo_loop.py` runs one bought path and two failure paths. The states below are what those lines mean.
 
 | State | What it means | Stubbed failure |
 | --- | --- | --- |
@@ -190,9 +203,9 @@ First slice under the assumption in `QUESTIONS.md`: Viagogo and StubHub. Twicket
 
 One canonical ticket is one seat: `ticket_id`.
 
-Each platform gets an adapter with the same three jobs: list, de-list, cancel. The real adapters are not written. `FakePlatform` in `reconcile.py` only de-lists and cancels, and it can return `ok`, `timeout`, or `fail` from a script.
+Each platform gets an adapter with the same three jobs: list, de-list, cancel. `listing.py` does the local create. `FakePlatform` in `reconcile.py` de-lists and cancels, and it can return `ok`, `timeout`, or `fail` from a script. Neither one calls a site.
 
-The idempotency key we store is `ticket_id` plus the platform name. Before any create, the local row must say we have not created it. StubHub's documented `external_id` behaviour replaces an existing listing, so a blind retry is how you delete a good listing and make a second one. The local key is what makes the create happen once.
+The idempotency key we store is `ticket_id` plus the platform name. `create_listing` refuses a second create for that key. StubHub's documented `external_id` behaviour replaces an existing listing, so a blind retry is how you delete a good listing and make a second one. The local key is what makes the create happen once.
 
 A sale on one site does not edit the other site's listing inside `reconcile`. It appends a `delist` action. The outbox is what actually calls the adapter, and a repeated de-list for the same ticket and platform is stored once.
 
@@ -207,7 +220,7 @@ target_price = cost * (1 + target_margin) / (1 - fee_rate)
 floor_price  = cost * (1 + 0.08) / (1 - fee_rate)
 ```
 
-Round the price up to the next penny. Rounding down can miss the floor.
+Round the price up to the next penny. Rounding down can miss the floor. `pricing.py` is that formula. The tests lock the pennies in the table below.
 
 `[Assumption: the fee is a fraction of the seller's list price, taken off the payout. Target margin is 15%. Cost in the examples is £100.00 and is not the Steven Wilson face value, which we do not have.]`
 

@@ -76,8 +76,8 @@ Alternative: put the work inside the personal notes repo.
 
 Why: that repo has unrelated private material. This folder is the thing that can be zipped or cloned on its own.
 
-## Purchase stays a drawing
+## Purchase is a local stub, not a live checkout
 
-Alternative: a second module that walks a checkout.
+Alternative: drive a browser or HTTP client through a real queue and stop before pay.
 
-Why: the brief says the buy step is simulated, and one module only. Checkout states are in the README. There is no client for them.
+Why: the brief asks for the steps with stubbed success and failure, and it forbids a real buy. `purchase.py` records queue, cart, captcha, pay, one account, and one sticky proxy id. The answers are inputs. A repeat of a finished attempt does not start a second charge. The de-list function in `reconcile.py` is still the core written for the live debug.

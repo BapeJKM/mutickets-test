@@ -23,9 +23,14 @@ def run_demo():
     _line(f"event {event['event']}", lines)
     _line(f"date {event['date']}", lines)
     _line(f"venue {event['venue']}", lines)
-    _line("primary sections not obtained", lines)
-    _line("primary price not obtained", lines)
-    _line("primary availability not obtained", lines)
+    _line(f"primary sections {event['sections']}", lines)
+    _line(f"primary price {event['price']}", lines)
+    _line(f"primary availability {event['availability']}", lines)
+    for offer in event["offers"]:
+        _line(
+            f"offer {offer['section']} row {offer['row']} {offer['price_gbp']} GBP {offer['kind']}",
+            lines,
+        )
     _line(f"limit {event['limit']}", lines)
     _line(f"resale listings {resale['listings']} checked {resale['checked']}", lines)
     _line(

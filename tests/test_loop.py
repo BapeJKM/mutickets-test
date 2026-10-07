@@ -88,4 +88,5 @@ def test_demo_walks_source_buy_price_list_and_sale():
     assert "queue idle queue_expired" in text
     assert "account_flagged" in text
     assert "repeated_charge False" in text
+    assert "offer WCHOIR row 7 53.50 GBP seated" in text
     assert "resale listings 49" in text

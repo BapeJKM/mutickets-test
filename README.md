@@ -46,9 +46,9 @@ Fetched 6 Oct 2026.
 | Event | Steven Wilson |
 | Date | Wed 28 Oct 2026, 18:45 |
 | Venue | Royal Albert Hall, London |
-| Primary sections | Not in the fetched page text. The ticket list is rendered in the browser and did not come back with the HTML. |
-| Primary price | Not obtained. |
-| Primary availability | Not obtained. The page did not include a remaining-ticket count. |
+| Primary sections | On the rendered event page, 7 Oct 2026: map labels Gallery, Second Tier, Grand Tier, Loggia, East Choir, West Choir. Offers named WCHOIR and ECHOIR. |
+| Primary price | Seated £53.50 in WCHOIR rows 7 and 8. Verified resale £63.13 in ECHOIR row 4 and WCHOIR row 4. |
+| Primary availability | The list heading said 2 results, with the quantity filter left at 2 tickets. Four offers were visible. This is not a count of every seat in the hall. |
 | Limit that was on the page | A max of 6 tickets per person and per household. Tickets over 6 will be cancelled. Under 14s must be with an adult over 18. |
 | Source | https://www.ticketmaster.co.uk/steven-wilson-london-28-10-2026/event/1F00644DBDE34D01 |
 | Fetch date | 7 Oct 2026 |

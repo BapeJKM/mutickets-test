@@ -48,6 +48,9 @@ def run_purchase(ticket_id, attempt_id, outcomes, ledger, quantity=1, limit=6):
         }
 
     rec("idle", "ok", "start")
+    if outcomes.get("account_status", "ok") != "ok":
+        rec("failed", "stopped", "account_flagged")
+        return finish("failed", "account_flagged", True)
     if quantity > limit:
         rec("failed", "stopped", "over_limit")
         return finish("failed", "over_limit", True)
@@ -70,6 +73,7 @@ def run_purchase(ticket_id, attempt_id, outcomes, ledger, quantity=1, limit=6):
         rec("failed", "stopped", "captcha_stopped")
         return finish("failed", "captcha_stopped", True)
 
+    rec("checkout", "ok", "stub_checkout")
     rec("paying", "started", "one_stub_charge")
     proxy = outcomes.get("proxy", "ok")
     if proxy != "ok":

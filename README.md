@@ -51,15 +51,13 @@ Fetched 6 Oct 2026.
 | Primary availability | Not obtained. The page did not include a remaining-ticket count. |
 | Limit that was on the page | A max of 6 tickets per person and per household. Tickets over 6 will be cancelled. Under 14s must be with an adult over 18. |
 | Source | https://www.ticketmaster.co.uk/steven-wilson-london-28-10-2026/event/1F00644DBDE34D01 |
-| Fetch date | 6 Oct 2026 |
+| Fetch date | 7 Oct 2026 |
 
-A search the same day also returned a StubHub UK resale page for this show: https://www.stubhub.co.uk/steven-wilson-tickets-london-london-royal-albert-hall-28-10-2026/event/107113389/
+A check on 7 Oct 2026 of https://needaticket.co.uk/events/steven-wilson-london-london-royal-albert-hall said prices were checked at 13:25 that day: 49 StubHub listings, 12 sections, cheapest Second Tier Box 9 from £75. That is resale stock, not Ticketmaster primary stock. The page's own "21 days until the event" matches 7 Oct to 28 Oct.
 
-The excerpt included resale asks, including Second Tier Box 9 at £150.00 and Stall rows at higher asks. The excerpt had no "prices as of" time. Those pounds are resale asks, not Ticketmaster primary stock, and they are `[Unverified]` as a price for this minute.
+An earlier search excerpt of the StubHub UK page had no "prices as of" time, including a Second Tier Box 9 ask of £150.00. That figure is `[Unverified]` as a price for 7 Oct. The £75 line above is the one with a check time.
 
-https://needaticket.co.uk/events/steven-wilson-london-london-royal-albert-hall showed "32 days" until the show and a from-price of £100. On 6 Oct 2026 the show is 22 days away, so that table is an older check. It is not used as a current price.
-
-https://www.royalalberthall.com/tickets/events/2026/steven-wilson returned a bot wall ("Pardon Our Interruption") on the same fetch. It was not retried.
+https://www.royalalberthall.com/tickets/events/2026/steven-wilson returned a bot wall ("Pardon Our Interruption") on 6 Oct 2026. It was not retried.
 
 ## How the de-list works, in plain words
 

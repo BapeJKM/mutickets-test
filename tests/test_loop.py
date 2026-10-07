@@ -19,6 +19,7 @@ def test_purchase_happy_path_is_a_stub():
         "queued",
         "cart_held",
         "captcha_required",
+        "checkout",
         "paying",
         "paying",
         "bought",
@@ -80,6 +81,11 @@ def test_demo_walks_source_buy_price_list_and_sale():
     assert "action mark_sold platform viagogo" in text
     assert "action delist platform stubhub" in text
     assert "ticket state sold" in text
+    assert "ticket state delivered" in text
     assert "stubhub listing delisted" in text
+    assert "action cancel_order platform stubhub" in text
+    assert "do not list" in text
     assert "queue idle queue_expired" in text
+    assert "account_flagged" in text
     assert "repeated_charge False" in text
+    assert "resale listings 49" in text
